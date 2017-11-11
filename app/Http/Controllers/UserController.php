@@ -60,7 +60,7 @@ class UserController extends Controller
 		     //    $saved = $User->save();
 
 		     //    return 1;
-    		$searchText = $request->input('searchText');
+    		$searchText = $request->input('name');
     		$users = User::where('name', $searchText)->get();
     		return $users;
     	}
