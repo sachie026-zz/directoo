@@ -45,4 +45,27 @@ class UserController extends Controller
     	}
     
 	}
+
+
+	public function getUsersForSearchText(Request $request){
+		try{
+    		 // $User = new User;
+		     //    $User->name = "sachin";
+		     //    $User->fb_profile_uri = "sss.jpg";
+		     //    $User->email = "jadhavsachin174@gmail.com";
+		     //    $User->age = "25";
+		     //    $User->location = "pune, india";
+		     //    $User->gender = "male";
+
+		     //    $saved = $User->save();
+
+		     //    return 1;
+    		$searchText = $request->input('searchText');
+    		$users = User::where('name', $searchText)->get();
+    		return $users;
+    	}
+    	catch(Exception $ex){
+    		return -1;
+    	}
+	}
 }	

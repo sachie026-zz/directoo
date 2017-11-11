@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return "Hello";
+    return "Helo";
 });
 
 Route::get('loginUser', 'UserController@checkAndAddNewUser');
