@@ -19,14 +19,29 @@ Route::get('loginUser', 'UserController@checkAndAddNewUser');
 
 Route::get('getUserProfile', 'UserController@getProfileByUserId');
 
-Route::get('getSentRequests', 'UserController@getSentRequestsByUserId');
+Route::get('getNotifications', 'UserController@getSentRequestsByUserId');
 
-Route::get('getRecievedRequests', 'UserController@getSentRequestsByUserId');
+Route::get('getWinks', 'UserController@getSentRequestsByUserId');
 
-Route::get('getSearchUsers', 'UserController@getUsersForSearchText');
+Route::get('getSearchedUsers', 'UserController@getUsersForSearchText');
 
 Route::get('getAllChats', 'UserController@getSentRequestsByUserId');
 
+
+
+//POST
+
+Route::post('updateProfile', 'UserController@updateProfileData');
+
+Route::post('updateSettings', 'UserController@updateSettings');
+
+Route::post('blockUser', 'UserController@blockUser');
+
+Route::post('sendWink', 'WinkController@sendWink');
+
+Route::post('sendWinkBack', 'WinkController@sendWinkBack');
+
+Route::post('rejectWink', 'WinkController@rejectWink');
 
 
 //// API listing
@@ -78,7 +93,7 @@ requestnotifications-> requestid, from, to, action
 CONTROLLERS
 ***********
 user
-request
+wink
 chat
 
 

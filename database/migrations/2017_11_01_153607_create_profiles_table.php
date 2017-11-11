@@ -16,10 +16,8 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('profile_views')->default(0);
-            $table->integer('date_requests_count')->default(0);
-            $table->integer('proposal_requests_count')->default(0);
             $table->string('about')->default("");
-            $table->integer('recieved_requests_count')->default(0);
+            $table->integer('winks_count')->default(0);
             $table->boolean('show_fb_link');
             $table->timestamps();
         });

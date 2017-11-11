@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestsTable extends Migration
+class CreateWinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('winks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('from');
-            $table->integer('to');
-            $table->integer('type_text');
-            $table->string('type_icon');
-            $table->string('message')->default("");
+            $table->integer('from_id');
+            $table->integer('to_id');
             $table->string('reply');
-            $table->boolean('viewd')->default(false);
+            $table->boolean('viewed')->default(false);
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('winks');
     }
 }
