@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('loginUser', 'UserController@checkAndAddNewUser');
 
-Route::get('getUserProfile', 'UserController@getProfileByUserId');
+Route::get('getUserProfile', 'UserController@getProfileByFId');
 
 Route::get('getNotifications', 'UserController@getSentRequestsByUserId');
 
