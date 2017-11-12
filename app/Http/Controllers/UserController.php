@@ -27,7 +27,9 @@ class UserController extends Controller
     		$present = User::where('email', $email)->count() == 1 ? true : false;
     		if(!$present){
 		        $User = new User;
-		        $User->name = $request->input('name');
+		        $User->fname = $request->input('fname');
+		        $User->fb_id = $request->input('fb_id');		        
+		        $User->lname = $request->input('lname');
 		        $User->fb_profile_uri = $request->input('fb_profile_uri');
 		        $User->email = $email;
 		        $User->age = $request->input('age');
@@ -67,5 +69,15 @@ class UserController extends Controller
     	catch(Exception $ex){
     		return -1;
     	}
+	}
+
+	public function getProfileByFId($fid){
+		try{
+			$user = User::where('fb_id', $fid)->get();
+	    	return $user;
+		}
+		catch(Exception $ex){
+			return -1;
+		}
 	}
 }	

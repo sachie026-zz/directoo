@@ -15,7 +15,6 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->integer('user_id');
-          //  $table->boolean('request_from_fb_friends_only')->default(false);
             $table->boolean('show_fb_link')->default(true);
             $table->boolean('show_men')->default(false);
             $table->boolean('show_women')->default(false);
