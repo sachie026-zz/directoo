@@ -28,7 +28,7 @@ class UserController extends Controller
     		if(!$present){
 		        $User = new User;
 		        $User->name = $request->input('name');
-		        $User->fb_profile_uri = $request->input('profile_uri');
+		        $User->fb_profile_uri = $request->input('fb_profile_uri');
 		        $User->email = $email;
 		        $User->age = $request->input('age');
 		        $User->location = $request->input('location');
