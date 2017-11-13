@@ -63,7 +63,7 @@ class UserController extends Controller
 
 		     //    return 1;
     		$searchText = $request->input('name');
-    		$users = User::where('name', $searchText)->get();
+    		$users = User::where('fname', $searchText)->get();
     		return $users;
     	}
     	catch(Exception $ex){
