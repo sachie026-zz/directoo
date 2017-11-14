@@ -19,9 +19,9 @@ Route::get('loginUser', 'UserController@checkAndAddNewUser');
 
 Route::get('getUserProfile', 'UserController@getProfileByFId');
 
-Route::get('getNotifications', 'UserController@getSentRequestsByUserId');
+Route::get('getNotifications', 'UserController@getNotifications');
 
-Route::get('getWinks', 'UserController@getSentRequestsByUserId');
+Route::get('getWinks', 'UserController@getWinksForFId');
 
 Route::get('getSearchedUsers', 'UserController@getUsersForSearchText');
 
