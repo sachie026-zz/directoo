@@ -4,10 +4,101 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Notification;
 
 class UserController extends Controller
 {
-    //
+    /*
+
+	
+	
+	---> load profile
+	fb_id
+
+	---> send wink
+	from, to
+
+	already winked from other one
+	already winked
+	unwink
+
+	---> get notification
+	fb_id
+
+	all notifications with for_id , not viewed
+
+	---> get winks
+	fb_id
+
+	where fb_id, and not viewed
+
+	expire after viewed
+
+
+
+
+	send wink on profile
+	update data
+	getnotifications
+	get winks
+	*/
+
+	
+
+	public function blockUser(Request $request){
+			$fromid = $request->input('fb_id');
+			$toid = $request->input('fb_id');
+
+	}
+
+	public function incrementProfileViewCountForFID(Request $request){
+		try{
+			$fbid = $request->input('fb_id');
+			DB::table('users')->increment('profile_views', 1, ['fb_id' => $fbid]);
+		}
+		catch(Exception $ex){
+			return -1;
+		}
+	}
+
+
+
+
+
+
+
+	public function getNotifications(Request $request){
+		try{
+			$fbid = $request->input('fb_id');	
+			$notifications = Notification::where('for_id', $fbid)->where('viewed', false)->get();	
+			return $notifications;
+		}
+		catch(Exception $ex){
+			return -1;
+		}
+	}
+
+	public function updateProfile(Request $request){
+		try{
+			$fbid = $request->input('fb_id');
+			$user = User::where('fb_id', $fbid)->get();
+			if($fbid){
+				$profile = User::find($user->id);
+				$profile->location = $request->input('location');
+				$profile->about = $request->input('about');
+				$profile->save();
+			}
+			return -1;
+		}
+		catch(Exception $ex){
+			return -1;
+		}
+		    
+	}
+
+	public function setStatusForViewedNotifications(){
+
+	}
 
 
     public function checkAndAddNewUser(Request $request){
