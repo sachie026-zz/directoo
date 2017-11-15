@@ -52,7 +52,7 @@ class WinkController extends Controller
 	}
 
 
-	public function getWinksForFId($fid){
+	public function getWinksForFID($fid){
     	try{
     		$winks = Wink::where('to_id', $fid)->get();
     		return $winks;

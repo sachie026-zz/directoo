@@ -21,7 +21,7 @@ Route::get('getUserProfile', 'UserController@getProfileByFId');
 
 Route::get('getNotifications', 'UserController@getNotifications');
 
-Route::get('getWinks', 'UserController@getWinksForFId');
+Route::get('getWinks', 'UserController@getWinksForFID');
 
 Route::get('getSearchedUsers', 'UserController@getUsersForSearchText');
 
