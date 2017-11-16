@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return "Helo";
-});
+// Route::get('/', function () {
+//     return "Helo";
+// });
+
+Route::get('/', 'UserController@home');
 
 Route::get('loginUser', 'UserController@checkAndAddNewUser');
 

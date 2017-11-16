@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Notification;
+use DB;
 
 class UserController extends Controller
 {
@@ -43,7 +44,13 @@ class UserController extends Controller
 	get winks
 	*/
 
-	
+	public function home(){
+		$notifications = DB::table('notifications')
+            ->join('users', 'users.fb_id', '=', 'notifications.for_id')
+            ->select('notifications.*', 'users.fname', 'users.lname' , 'fb_profile_uri')
+            ->get();
+            return $notifications;
+	}	
 
 	public function blockUser(Request $request){
 			$fromid = $request->input('fb_id');
@@ -162,8 +169,9 @@ class UserController extends Controller
     	}
 	}
 
-	public function getProfileByFId($fid){
+	public function getProfileByFId((Request $request){
 		try{
+			$fid = $request->input('fb_id');
 			$user = User::where('fb_id', $fid)->get();
 	    	return $user;
 		}

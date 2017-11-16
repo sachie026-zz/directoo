@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fb_profile_uri')->default(null);
-            $table->integer('fb_id');            
+            $table->string('fb_id');            
             $table->string('fname');
             $table->string('lname');
             $table->string('email');
