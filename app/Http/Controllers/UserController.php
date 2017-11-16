@@ -169,7 +169,7 @@ class UserController extends Controller
     	}
 	}
 
-	public function getProfileByFId((Request $request){
+	public function getProfileByFId(Request $request){
 		try{
 			$fid = $request->input('fb_id');
 			$user = User::where('fb_id', $fid)->get();
