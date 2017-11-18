@@ -29,6 +29,8 @@ Route::get('getSearchedUsers', 'UserController@getUsersForSearchText');
 
 Route::get('getAllChats', 'UserController@getSentRequestsByUserId');
 
+Route::get('sendWink', 'WinkController@sendWink');
+
 
 
 //POST
@@ -39,7 +41,7 @@ Route::post('updateSettings', 'UserController@updateSettings');
 
 Route::post('blockUser', 'UserController@blockUser');
 
-Route::post('sendWink', 'WinkController@sendWink');
+//Route::post('sendWink', 'WinkController@sendWink');
 
 Route::post('sendWinkBack', 'WinkController@sendWinkBack');
 

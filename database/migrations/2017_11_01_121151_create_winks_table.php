@@ -17,7 +17,7 @@ class CreateWinksTable extends Migration
             $table->increments('id');
             $table->integer('from_id');
             $table->integer('to_id');
-            $table->string('reply');
+            $table->string('reply')->default("no");
             $table->boolean('viewed')->default(false);
             $table->timestamps();
         });
