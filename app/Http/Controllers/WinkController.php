@@ -51,10 +51,10 @@ class WinkController extends Controller
 		try{
 			$check = Wink::where('from_id', $fromid)->where('to_id', $toid)->get();
 			$count =  count($check);
-			if($count > 0 && $check->reply == "accepted"){
+			if($count > 0 && $check[0]->reply == "accepted"){
 				return 1;		// already sent and accepted
 			}
-			else if($count > 0 && $check->reply != "accepted"){
+			else if($count > 0 && $check[0]->reply != "accepted"){
 				return 2;		// already sent but not accepted
 			}
 			else{
@@ -65,10 +65,10 @@ class WinkController extends Controller
 
 			$checkReverse =  Wink::where('to_id', $fromid)->where('from_id', $toid)->get();
 			$countR = count($checkReverse);
-			if($countR > 0 && $checkReverse->reply == "accepted"){
+			if($countR > 0 && $checkReverse[0]->reply == "accepted"){
 				return 3; 		// already recieved and accepted
 			}
-			else if($countR > 0 && $checkReverse->reply != "accepted"){
+			else if($countR > 0 && $checkReverse[0]->reply != "accepted"){
 				return 4;		// already recieved but not accepted	
 			}
 			else{
@@ -105,8 +105,7 @@ class WinkController extends Controller
 					$wink->from_id = $fromid;
 					$wink->to_id = $toid;
 					$saveResult = $wink->save();
-					return $saveResult;
-				
+					return $saveResult;				
 			}
 			return 2;
 		}
