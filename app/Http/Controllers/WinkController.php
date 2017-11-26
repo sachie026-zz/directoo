@@ -80,7 +80,7 @@ class WinkController extends Controller
 		}
 	}
 
-	public function winkAlreadyRecieved($fromid, $toid){
+	public function winkAlreadySent($fromid, $toid){
 		try{
 			$check = Wink::where('from_id', $fromid)->where('to_id', $toid)->count();
 			return $check > 0;

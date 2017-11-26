@@ -31,6 +31,8 @@ Route::get('getAllChats', 'UserController@getSentRequestsByUserId');
 
 Route::get('sendWink', 'WinkController@sendWink');
 
+Route::get('winkAlreadySent', 'WinkController@winkAlreadySent');
+
 
 
 //POST

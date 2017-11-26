@@ -45,11 +45,23 @@ class UserController extends Controller
 	*/
 
 	public function home(){
-		$notifications = DB::table('notifications')
+		return "home";
+	/*$notifications = DB::table('notifications')
             ->join('users', 'users.fb_id', '=', 'notifications.for_id')
             ->select('notifications.*', 'users.fname', 'users.lname' , 'fb_profile_uri')
             ->get();
-            return $notifications;
+  	  
+		  	$toid = "1";
+			$fromid = "2";
+			
+			$results = DB::table('users')
+                     ->where('users.fb_id', '=', "1")
+					 ->distinct()
+                       ->get();
+	        */
+			
+//				return $results;
+//		  return $notifications;
 	}	
 
 	public function blockUser(Request $request){
@@ -125,6 +137,7 @@ class UserController extends Controller
     		$present = User::where('email', $email)->count() == 1 ? true : false;
     		if(!$present){
 		        $User = new User;
+		        $User->name = $request->input('name');
 		        $User->fname = $request->input('fname');
 		        $User->fb_id = $request->input('fb_id');		        
 		        $User->lname = $request->input('lname');
@@ -161,7 +174,7 @@ class UserController extends Controller
 
 		     //    return 1;
     		$searchText = $request->input('name');
-    		$users = User::where('fname', $searchText)->get();
+    		$users = User::where('name', 'LIKE', $searchText)->get();
     		return $users;
     	}
     	catch(Exception $ex){
@@ -171,8 +184,32 @@ class UserController extends Controller
 
 	public function getProfileByFId(Request $request){
 		try{
-			$fid = $request->input('fb_id');
-			$user = User::where('fb_id', $fid)->get();
+			
+			$results = DB::table('users')
+                     ->distinct()
+                     ->leftJoin('winks', function($join)
+                         {
+                             $join->on('from_id', '>=', '');
+                             $join->on('to_id', '>=', '');
+                         })
+                     ->where('user.fb_id', '=', $toid)
+                     ->get();
+			
+				return $results;
+			//
+			
+			
+			$toid = $request->input('fb_id');
+			$fromid = $request->input('from_id');
+			
+			$users = DB::table('winks')
+                ->whereColumn([
+                    ['to_id', '=', $toid],
+                    ['from_id', '>', $fromid]
+                ])->get();
+			
+			
+			$user = User::where('fb_id', $toid)->get();
 	    	return $user;
 		}
 		catch(Exception $ex){

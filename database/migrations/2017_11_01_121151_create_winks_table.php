@@ -15,8 +15,8 @@ class CreateWinksTable extends Migration
     {
         Schema::create('winks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('from_id');
-            $table->integer('to_id');
+            $table->string('from_id');
+            $table->string('to_id');
             $table->string('reply')->default("no");
             $table->boolean('viewed')->default(false);
             $table->timestamps();
