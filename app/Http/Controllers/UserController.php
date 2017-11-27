@@ -185,7 +185,7 @@ class UserController extends Controller
 	public function getProfileByFId(Request $request){
 		try{
 			
-			$results = DB::table('users')
+		/*	$results = DB::table('users')
                      ->distinct()
                      ->leftJoin('winks', function($join)
                          {
@@ -197,17 +197,17 @@ class UserController extends Controller
 			
 				return $results;
 			//
-			
+			*/
 			
 			$toid = $request->input('fb_id');
 			$fromid = $request->input('from_id');
 			
-			$users = DB::table('winks')
+			/*$users = DB::table('winks')
                 ->whereColumn([
                     ['to_id', '=', $toid],
                     ['from_id', '>', $fromid]
                 ])->get();
-			
+			*/
 			
 			$user = User::where('fb_id', $toid)->get();
 	    	return $user;
