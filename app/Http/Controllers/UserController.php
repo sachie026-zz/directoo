@@ -133,16 +133,16 @@ class UserController extends Controller
 		     //    $saved = $User->save();
 
 		     //    return 1;
-    		$email = $request->input('email');
-    		$present = User::where('email', $email)->count() == 1 ? true : false;
+    		$fb_id = $request->input('fb_id');
+    		$present = User::where('fb_id', $fb_id)->count() == 1 ? true : false;
     		if(!$present){
 		        $User = new User;
 		        $User->name = $request->input('name');
 		        $User->fname = $request->input('fname');
-		        $User->fb_id = $request->input('fb_id');		        
+		        $User->fb_id = $fb_id;		        
 		        $User->lname = $request->input('lname');
 		        $User->fb_profile_uri = $request->input('fb_profile_uri');
-		        $User->email = $email;
+		        $User->email = $request->input('email');
 		        $User->age = $request->input('age');
 		        $User->location = $request->input('location');
 		        $User->gender = $request->input('gender');
