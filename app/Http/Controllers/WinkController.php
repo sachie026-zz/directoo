@@ -128,7 +128,7 @@ class WinkController extends Controller
 
 		$userid = $row[0]->id;
 		$user = User::find($userid);
-		$user->winks_recieved = $this->addToList( $fromid, $user1->winks_recieved);
+		$user->winks_recieved = $this->addToList( $fromid, $user->winks_recieved);
 		User::where('fb_id', $toid)->increment('winks_count');
 		$user->save();
 
