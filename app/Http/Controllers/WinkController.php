@@ -107,7 +107,7 @@ class WinkController extends Controller
 					$wink->to_id = $toid;
 					$saveResult = $wink->save();
 					if($saveResult){
-						$this->updateWinksStatus($fromid, $toid);
+						//$this->updateWinksStatus($fromid, $toid);
 					}
 					return $saveResult;				
 			}
