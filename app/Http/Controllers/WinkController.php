@@ -121,14 +121,14 @@ class WinkController extends Controller
 
 	public function updateWinksStatus($fromid, $toid){
 		$row = User::where('fb_id', $toid)->get();
-		$userid = $row->id;
+		$userid = $row['id'];
 		$user = User::find($userid);
 		$user->winks_recieved = addToList( $fromid, $user1->winks_recieved);
 		User::where('fb_id', $toid)->increment('winks_count');
 		$user->save();
 
 		$row1 = User::where('fb_id', $fromid)->get();
-		$userid1 = $row1->id;
+		$userid1 = $row1['id'];
 		$user1 = User::find($userid1);
 		$user1->winks_sent = addToList( $toid, $user1->winks_sent);
 		//User::where('fb_id', $toid)->increment('winks_count');
