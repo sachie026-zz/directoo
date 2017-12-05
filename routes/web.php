@@ -33,6 +33,7 @@ Route::get('sendWink', 'WinkController@sendWink');
 
 Route::get('winkAlreadySent', 'WinkController@winkAlreadySent');
 
+Route::get('getHomeStatus', 'UserController@homeStatus');
 
 
 //POST
@@ -52,6 +53,60 @@ Route::post('rejectWink', 'WinkController@rejectWink');
 
 //// API listing
 /*
+HIGH LEVEL ACTIONS
+
+login
+check and add user
+search user
+view user profile
+send wink
+view notification
+view winks
+accept wink
+cancel wink
+update profile
+any new winks count
+any new notification
+is wink already sent
+ 
+
+*/
+
+/*
+PAGE WISE API
+
+HOME -> all winks count , any new winks, all notifications , any new notification
+SEARCH -> All users, is wink sent, send wink , total users
+PROFILE ->  is wink already sent, user profile data, profile views
+
+*/
+
+/*
+DB QUERIES YO BE GENERAED PAGE WISE
+
+HOME -> get winks and notification count
+SEARCH -> get users count and users list with wink sent or not 
+PROFILE -> get user data wink sent or not 
+
+*/
+
+
+
+
+/*
+
+
+send wink ->  add entry to winks table, update profile winks count, update notification 
+cancel wink -> delete winks entry, update profile winks , update notification
+block user -> add entry to blocked list, update profile table winks , update notification
+profile views -> update user profile profile count, entry to profile table
+update profile ->  
+get profile -> get and set to all fields on profile, also set to update profile pop ups fileds
+
+
+
+*/
+/*
 GET
 *******
 login
@@ -62,15 +117,6 @@ getSentRequests
 getChats
 
 
-
-POST
-*******
-createNewUser
-sendRequestToUser
-acceptRequest
-cancelRequest
-updateProfileAbout
-updateSettings
 
 
 

@@ -105,6 +105,9 @@ class WinkController extends Controller
 					$wink->from_id = $fromid;
 					$wink->to_id = $toid;
 					$saveResult = $wink->save();
+					if($saveResult){
+						updateWinksStatus($fromid, $toid);
+					}
 					return $saveResult;				
 			}
 			return 2;
@@ -115,6 +118,42 @@ class WinkController extends Controller
 
 	}
 
+	public function updateWinksStatus($fromid, $toid){
+		$row = User::where('fb_id', $toid)->get();
+		$userid = $row->id;
+		$user = User::find($userid);
+		$user->winks_recieved = addToList( $fromid, $user1->winks_recieved);
+		User::where('fb_id', $toid)->increment('winks_count');
+		$user->save();
+
+		$row1 = User::where('fb_id', $fromid)->get();
+		$userid1 = $row1->id;
+		$user1 = User::find($userid1);
+		$user1->winks_sent = addToList( $toid, $user1->winks_sent);
+		//User::where('fb_id', $toid)->increment('winks_count');
+		$user1->save();		
+		
+	}
+	
+	public function addToList( $userid, $str){
+		// add userid to fbid list
+		if($str){
+			if(strlen($str) > 0){
+				return $str.",".$userid;
+			}
+			else{
+				return $userid;
+			}
+		}
+		else{
+			return $userid;
+		}
+	}
+	
+	public function addToSentArray($userid, $str){
+		// remove userid from fbid list
+		
+	}
 
 	public function getWinksForFID(Request $request){
     	try{

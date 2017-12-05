@@ -17,7 +17,7 @@ class CreateProfileViewsTable extends Migration
 			$table->integer('fb_id');
             $table->string('views_from');
 			$table->integer('count');
-
+			$table->timestamps();
         });
     }
 

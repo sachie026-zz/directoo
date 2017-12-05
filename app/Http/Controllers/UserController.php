@@ -142,7 +142,7 @@ class UserController extends Controller
 		        $User->fb_id = $fb_id;		        
 		        $User->lname = $request->input('lname');
 		        $User->fb_profile_uri = $request->input('fb_profile_uri');
-		        $User->email = $request->input('email');
+		        $User->email = $request->input('email')?;
 		        $User->age = $request->input('age');
 		        $User->location = $request->input('location');
 		        $User->gender = $request->input('gender');
@@ -162,17 +162,7 @@ class UserController extends Controller
 
 	public function getUsersForSearchText(Request $request){
 		try{
-    		 // $User = new User;
-		     //    $User->name = "sachin";
-		     //    $User->fb_profile_uri = "sss.jpg";
-		     //    $User->email = "jadhavsachin174@gmail.com";
-		     //    $User->age = "25";
-		     //    $User->location = "pune, india";
-		     //    $User->gender = "male";
 
-		     //    $saved = $User->save();
-
-		     //    return 1;
     		$searchText = $request->input('name');
     		$users = User::where('name', 'LIKE', $searchText)->get();
     		return $users;
@@ -208,6 +198,21 @@ class UserController extends Controller
                     ['from_id', '>', $fromid]
                 ])->get();
 			*/
+			
+			$user = User::where('fb_id', $toid)->get();
+	    	return $user;
+		}
+		catch(Exception $ex){
+			return -1;
+		}
+	}
+	
+	public function homeStatus(Request $request){
+		try{
+			
+			$toid = $request->input('fb_id');
+			$fromid = $request->input('from_id');
+			
 			
 			$user = User::where('fb_id', $toid)->get();
 	    	return $user;
