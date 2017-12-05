@@ -142,7 +142,7 @@ class UserController extends Controller
 		        $User->fb_id = $fb_id;		        
 		        $User->lname = $request->input('lname');
 		        $User->fb_profile_uri = $request->input('fb_profile_uri');
-		        $User->email = $request->input('email')?;
+		        $User->email = $request->input('email');
 		        $User->age = $request->input('age');
 		        $User->location = $request->input('location');
 		        $User->gender = $request->input('gender');
