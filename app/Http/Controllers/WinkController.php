@@ -109,7 +109,7 @@ class WinkController extends Controller
 					if($saveResult){
 						//$this->updateWinksStatus($fromid, $toid);
 					}
-					return $saveResult;				
+					return $saveResult ? 1 : 0;				
 			}
 			return 2;
 		}
